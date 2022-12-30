@@ -46,6 +46,7 @@ const TicInfo = () => {
     let componentRefTic= useRef(null)
     
     useEffect(()=>{
+        const {id}=useParams()
         async function getTic(){
             try{
                 
@@ -282,7 +283,7 @@ const TicInfo = () => {
                         <img
                                 className="box-border min-h-full min-w-full absolute m-auto" 
                                 src={tic.qrCode}
-                                alt="Vehicle image tic"
+                                alt="Vehicle tic"
                             />
 
                             </div>  
@@ -310,7 +311,7 @@ const TicInfo = () => {
                             <img
                                 className="box-border m-auto w-full h-full" 
                                 src={tic.qrCode}
-                                alt="Vehicle image tic"
+                                alt="Vehicle tic"
                             /> 
                             </div>
                             <div className='w-4/6 flex flex-wrap text-center justify-center'>
@@ -458,13 +459,13 @@ const TicInfo = () => {
                         <div className='logos print-heading overflow-hidden w-full h-6 print-logos grid grid-cols-4 justify-center content-center'>
                             <div className='col-span-2 p-3'>
                             <div className='grid grid-cols-2 items-center'>
-                            <img className='col-span-1 mr-2' src={escplurinacional} alt="escudo image tic"/>
-                            <img className='col-span-1 ml-2' src={letras} alt="letras image tic" />
+                            <img className='col-span-1 mr-2' src={escplurinacional} alt="escudo tic"/>
+                            <img className='col-span-1 ml-2' src={letras} alt="letras tic" />
                             </div>
                             </div>
                             <div className='col-span-2 p-3'>
                             <div className='grid grid-cols-2 items-center'>
-                            <img className='col-end-3 col-span-1' src={escudopolicia} alt="escudo image tic"/>
+                            <img className='col-end-3 col-span-1' src={escudopolicia} alt="escudo tic"/>
                             </div>
                             </div>
                         </div>
@@ -499,13 +500,13 @@ const TicInfo = () => {
                         <div className='logos print-heading overflow-hidden w-full h-6 print-logos grid grid-cols-4 justify-center content-center'>
                             <div className='col-span-2 p-3'>
                             <div className='grid grid-cols-2 items-center'>
-                            <img className='col-span-1 mr-2' src={escplurinacional} alt="escudo image tic" />
-                            <img className='col-span-1 ml-2' src={letras} alt="letras image tic" />
+                            <img className='col-span-1 mr-2' src={escplurinacional} alt="escudo tic" />
+                            <img className='col-span-1 ml-2' src={letras} alt="letras tic" />
                             </div>
                             </div>
                             <div className='col-span-2 p-3'>
                             <div className='grid grid-cols-2 items-center'>
-                            <img className='col-end-3 col-span-1' src={escudopolicia} alt="escudo image tic"/>
+                            <img className='col-end-3 col-span-1' src={escudopolicia} alt="escudo tic"/>
                             </div>
                             </div>
                         </div>

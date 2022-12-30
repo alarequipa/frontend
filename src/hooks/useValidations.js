@@ -670,6 +670,7 @@ const getTicById=async(id)=>{
         saveDriver,
         saveTic,
         getTic,
+        setVehiclesRole,
         getVehicleRolesById,
         getTicById,
         getVehicleRoles,
@@ -704,6 +705,7 @@ const getTicById=async(id)=>{
         findVehicleByPlaque,
         selectedBusiness,
         date,
+        setTic,
         setDate,
         setSelectedBusiness
     }
