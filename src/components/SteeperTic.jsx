@@ -2,14 +2,14 @@ import React, {useContext, useState} from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import { styled } from '@mui/material/styles';
-import {Typography, Step, FormHelperText, Alert, AlertTitle, StepLabel, List, ListItem, ListItemButton, ListItemAvatar, Avatar, ListItemText, Button, Stack, FormGroup,FormLabel, FormControlLabel, Checkbox, Select, FormControl,TextField, MenuItem, InputLabel, Autocomplete} from '@mui/material';
+import {Typography, Step, FormHelperText, Alert, AlertTitle, StepLabel, List, ListItem, ListItemButton, ListItemAvatar, Avatar, Button, Stack,  Checkbox, FormControl,TextField} from '@mui/material';
 import Check from '@mui/icons-material/Check';
 import '../styles/steeper.scss'
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import PropTypes from 'prop-types';
 import { TouchApp} from '@mui/icons-material';
 import CheckIcon from '@mui/icons-material/Check';
-import ReactCodeInput from 'react-code-input';
+
 import AppContext from '../context/AppContext';
 import ValidationContext from '../context/ValidationContext';
 
@@ -24,7 +24,7 @@ export default function SteeperTic({handleClose}){
     };
 
     const {checked, setChecked, codigo, setCodigo, handleValidationCod}= useContext(AppContext)
-    const {verifyCudap, vehiclesRole, qrcode, saveTic, updateTic, cudap, tic}=useContext(ValidationContext)
+    const {verifyCudap, vehiclesRole, qrcode, saveTic, updateTic, cudap}=useContext(ValidationContext)
     const [activeStep, setActiveStep] = React.useState(0);
     const [temporatalTic, setTemporalTic]=useState('')
     const [skipped] = React.useState(new Set());
@@ -43,9 +43,6 @@ export default function SteeperTic({handleClose}){
   const isStepOptional = (step) => {
     return step === 1;
   };
-  const test=()=>{
-    console.log(qrcode)
-  }
 
   const QontoConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -200,7 +197,6 @@ export default function SteeperTic({handleClose}){
 			):""}
 			</FormControl>
 
-             {/* <ReactCodeInput type='number' fields={6}/> */}
             </div>
 
          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>

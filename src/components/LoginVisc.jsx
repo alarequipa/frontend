@@ -9,14 +9,13 @@ import FormControl from '@mui/material/FormControl';
 import { FormHelperText, TextField,Button } from '@mui/material';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import IconButton from '@mui/material/IconButton';
-import { Email } from '@mui/icons-material';
+
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ValidationContext from '../context/ValidationContext';
 import Page from '../containers/Page';
-import AppContext from '../context/AppContext';
-import AuthContext from '../context/AuthContext';
+
 import { Link, useNavigate } from 'react-router-dom';
 import { AccountContext } from '../context/AccountContext';
 

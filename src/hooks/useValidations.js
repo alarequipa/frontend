@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {initialState} from "../initialstate";
 import { MainApi, Validations, TicGeneration } from "../api";
 import { Storage } from "../services/storage";
@@ -25,7 +25,7 @@ const useValidations = () => {
     const [rubro, setRubro] = useState('');
     const [radicatoria, setRadicatoria] = useState('');
 	const [empresa, setEmpresa] = useState('');
-    const [url, setUrl] = useState('http://localhost:3000/tic/')
+    const url = 'http://157.245.132.21:3000/tic/'
     const [headings, setHeadings]=useState([])
     const [radioTaxis, setRadioTaxis]=useState([])
     const [asociacion, setAsociacion]=useState([])
@@ -246,6 +246,7 @@ const useValidations = () => {
                 user:true
             });
 			const response=await apiCtrl.logout()
+            return response
 		} catch (error) {
 			setError({
                 message:error.message,
@@ -443,6 +444,7 @@ const useValidations = () => {
     const printTic=async(id)=>{
         try{
             const response=await vehicleCtrl.printTic(id)
+            return response
         }catch(error){
             throw error
         }
@@ -571,7 +573,8 @@ const updateBusinessVehicles=async(id)=>{
 }
 const deleteBusiness=async(id)=>{
     try{
-        const response=await vehicleCtrl.deleteBusiness(id)       
+        const response=await vehicleCtrl.deleteBusiness(id)    
+        return response   
     }catch(error){
         throw error
     }finally{
@@ -580,7 +583,8 @@ const deleteBusiness=async(id)=>{
 } 
 const verifyVehicleBusiness=async(id)=>{
     try{
-        const response=await vehicleCtrl.verifyVehicleBusiness(id)       
+        const response=await vehicleCtrl.verifyVehicleBusiness(id)   
+        return response    
     }catch(error){
         throw error
     }finally{

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import Box from '@mui/material/Box';
@@ -21,7 +21,7 @@ export default function SteeperBusiness({handleClose}){
       city:"",
       email:"",
     }
-    const {business, setBusiness, businessBlank}= useContext(AppContext)
+    const {businessBlank}= useContext(AppContext)
     const {headings, saveBusiness, rubro, setRubro}=useContext(ValidationContext)
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped] = React.useState(new Set());

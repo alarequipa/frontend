@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import Home from '../containers/Home';
 import InfoPerson from '../components/InfoPerson';
 import Vehicles from '../components/Vehicles';
 import Tic from '../components/Tic';
@@ -83,7 +82,7 @@ const Dashboard =  () => {
 		</div>
         </>
     ):""}
-    {(role.police && role.police!=[] &&role.police!="")?(
+    {(role.police && role.police!==[] &&role.police!=="")?(
            <DashboardVisc></DashboardVisc>
     ):""}
 
