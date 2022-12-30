@@ -46,8 +46,7 @@ const TicInfo = () => {
     let componentRefTic= useRef(null)
     
     useEffect(()=>{
-        const {id}=useParams()
-        async function getTic(){
+       async function getTic(){
             try{
                 
                 await setLoading(true)
@@ -69,7 +68,7 @@ const TicInfo = () => {
 
         }
         getTic()
-    },[1])
+    },[id])
     const handleOpenQR = () => {setOpenQR(true)};
     const handleCloseQR = () => {setOpenQR(false)};
 
