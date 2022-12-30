@@ -3,18 +3,20 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import useBusiness from '../hooks/useInitials';
 const Home =  ({ children }) => {
-    useEffect(()=>{
-        useBusiness() 
-    },[1])
+    const business= useBusiness() 
+  
 
 	return (
     <>
-    <div className='h-screen overflow-y-scroll'>
-    <Sidebar/>   
-        <div className='md:ml-64'>
-            <Outlet/>
+      {(business || business!=="")?(
+        <div className='h-screen overflow-y-scroll'>
+        <Sidebar/>   
+            <div className='md:ml-64'>
+                <Outlet/>
+            </div>
         </div>
-    </div>
+          ):""}
+   
    
     </>
 	

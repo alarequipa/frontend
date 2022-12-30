@@ -5,7 +5,7 @@ import { AccountContext } from "../context/AccountContext";
 const vehicleCtrl= new TicGeneration();
 
 const useBusiness =() =>{
-    const {addPerson, getRoles,newTic, setVehiclesRole, vehiclesRole, setHeadings, setRadioTaxis, setAsociacion,setSindicato, headings}= useContext(ValidationContext)
+    const {addPerson,setTic, getRoles,newTic, setVehiclesRole, vehiclesRole, setHeadings, setRadioTaxis, setAsociacion,setSindicato, headings}= useContext(ValidationContext)
     const {user}= useContext(AccountContext);
     
     useEffect(()=>{
