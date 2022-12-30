@@ -20,7 +20,7 @@ const useBusiness =() =>{
             }
         }
         vehiclesRenew()
-    },[vehiclesRole])
+    },[vehiclesRole, setVehiclesRole])
     useEffect(()=>{
         async function test2(){
             try{
@@ -33,7 +33,7 @@ const useBusiness =() =>{
             }
         }
         test2()
-    },[newTic])
+    },[newTic, setTic])
     useEffect(()=>{
         async function test3(){
             await addPerson(user.person)
