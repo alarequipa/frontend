@@ -1,0 +1,19 @@
+.card{
+    overflow: visible !important;
+    border-radius: 10px !important;
+}
+
+.bg-principal{
+background-color: $main !important;
+}
+.bg-cudap{
+    background-color: rgb(245, 158, 11) !important;
+    color: white !important
+}
+.Mui-disabled{
+    background-color: #e3e3e3 !important;
+}
+
+.text-principal{
+    color: $main;
+}

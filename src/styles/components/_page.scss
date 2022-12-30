@@ -1,0 +1,29 @@
+.Page{
+    background-image: linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/assets/img/background.png');
+    background-size: cover;
+    background-position: 0px;
+}
+
+.ticBorder{
+    border-color: $main !important;
+}
+
+.ticBackground{
+    background-color: $main !important;
+}
+
+.ticCard{
+    font-family: "NunitoR";
+}
+
+.ticCardTitle{
+    font-family: "NunitoBl";
+}
+.ticCardSubTitle{
+    font-family: "NunitoB";
+}
+
+.ticCarColorText{
+    color: $main !important;
+
+}

@@ -1,0 +1,75 @@
+@media print{
+    html, body {
+        overflow: initial !important;
+        -webkit-print-color-adjust: exact;
+        
+        .print-container{
+          display: block !important;
+            width: 100vmax !important;
+            height: 100vmax !important;
+        }
+        .print-heading{
+         height: 2.5cm !important;
+        }
+        .print-tittle{
+          height: 2.5cm !important;
+          background-color: #1a355e;
+         }
+         .lines{
+          width: 20cm !important;
+          background-image: url("../../assets/tic/margen.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          top: 50%;
+         }
+         .tittle{
+          font-size: 28px !important;
+          font-weight: 700 !important;
+         }
+         .print-qr{
+          background-image: url("../../assets/tic/fondoqr.png") !important;
+          background-repeat: no-repeat;
+          background-size: contain;
+          height: 15cm !important;
+          .qr{
+            height: 85% !important;
+            border-radius: 50px;
+            overflow: hidden !important;
+          }          
+         }
+         .print-tic{
+          background-image: url("../../assets/tic/fondo.png") !important;
+          background-repeat: no-repeat;
+          background-size: cover !important;
+          height: 15cm !important;
+          .perfil{
+            width: 250px !important;
+            height: 250px !important;        
+            border-radius: 50px;
+            overflow: hidden !important;
+          }  
+          .info{
+            width: 3 !important;
+          } 
+          .articulo-footer{
+            width: 96%;
+          }
+          .info-footer{
+            width: 96%;
+            height: 1.5cm !important;
+            background-color: #1a355e !important;
+          }
+       }
+      }
+}
+@media print {
+    .page-break {
+      display: block;
+      page-break-before: auto;
+    }
+  }
+  
+  @page {
+    size: 20cm 20cm;
+    margin: 0mm 0mm 0mm 0mm !important;
+  }
