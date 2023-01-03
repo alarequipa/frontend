@@ -32,7 +32,7 @@ const Register = () => {
 				'mat': '',        
 			}
 		const savedPerson= await getPersonByCi(vals.ced);
-		
+	
 		if(await savedPerson && savedPerson.FechaNacimiento===((date.toDate()).toLocaleDateString())){
 
 			navigate('/validate')
@@ -42,6 +42,7 @@ const Register = () => {
 			if(await finded && finded.FechaNacimiento===((date.toDate()).toLocaleDateString())){	
 				navigate('/validate')
 			}else{
+				console.log(savedPerson)
 				Swal.fire({
 					title: 'Error!',
 					text: 'Introduce una fecha de nacimiento y carnet validos',
