@@ -19,7 +19,7 @@ const BusinessList = ({business}) => {
             <div className="flex flex-wrap -mx-3">
             <div className="flex-none w-auto px-3"> 
             <div className="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-24 w-24 overflow-hidden rounded-xl">
-                    <img src={`http://localhost:3003/uploads/business/image/${business.image}`} alt="business_image" className="max-w-none w-full absolute shadow-2xl rounded-xl" />
+                    <img src={`${process.env.REACT_APP_SERVER_URL}/uploads/business/image/${business.image}`} alt="business_image" className="max-w-none w-full absolute shadow-2xl rounded-xl" />
                 </div>
                 </div>
       <div className="flex-none w-auto max-w-full mx-auto my-auto">

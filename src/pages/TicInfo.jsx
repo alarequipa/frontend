@@ -187,7 +187,7 @@ const TicInfo = () => {
                             <div className='h-20 w-20 col-span-1 rounded-md overflow-hidden relative'>
                             <img
                                     className="max-w-none w-full h-auto box-border min-h-full min-w-full absolute m-auto"                     
-                                    src={`http://localhost:3003/uploads/business/image/${vehicleRole.business.image}`}
+                                    src={`${process.env.REACT_APP_SERVER_URL}/uploads/business/image/${vehicleRole.business.image}`}
                                     alt="Empresa"
                                 />
                                 </div>

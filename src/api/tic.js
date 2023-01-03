@@ -1,5 +1,5 @@
 export class TicGeneration {
-    endpoint=`${process.env.REACT_APP_SERVER_URL}:3003`
+    endpoint=`${process.env.REACT_APP_SERVER_URL}`
 
     async saveVehicle(body){
         
