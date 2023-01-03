@@ -38,11 +38,11 @@ const Register = () => {
 			navigate('/validate')
 		}else{
 			const finded= await verifyPerson(personFind)
-			
+			console.log(finded)
 			if(await finded && finded.FechaNacimiento===((date.toDate()).toLocaleDateString())){	
 				navigate('/validate')
 			}else{
-				console.log(savedPerson)
+				
 				Swal.fire({
 					title: 'Error!',
 					text: 'Introduce una fecha de nacimiento y carnet validos',
