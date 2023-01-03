@@ -7,7 +7,7 @@ const UserContext=({children})=>{
     const [user, setUser]=useState({loggedIn:null})
     const navigate = useNavigate()
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_SERVER_URL}/loginCi`,{
+        fetch(`${process.env.REACT_APP_SERVER_URL}loginCi`,{
             credentials:"include"
         }).catch(err=>{
             setUser({loggedIn:false})

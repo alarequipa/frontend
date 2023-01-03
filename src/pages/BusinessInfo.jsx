@@ -54,7 +54,7 @@ const BusinessInfo = () => {
             <div className="flex-none w-auto px-3"> 
             <div className="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-24 w-24 overflow-hidden rounded-xl">
 
-                    <img  alt="business_image" src={`${process.env.REACT_APP_SERVER_URL}/uploads/business/image/${selectedBusiness.image}`} className="max-w-none w-full absolute shadow-2xl rounded-xl" />
+                    <img  alt="business_image" src={`${process.env.REACT_APP_SERVER_URL}uploads/business/image/${selectedBusiness.image}`} className="max-w-none w-full absolute shadow-2xl rounded-xl" />
                 </div>
                 </div>
       <div className="flex flex-row justify-start w-auto max-w-full ml-6 my-auto">
