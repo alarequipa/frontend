@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Card,Button, Modal, Box, CardContent} from '@mui/material';
 
 import HorizontalLinearStepper from './Steeper';
-
 import ValidationContext from '../context/ValidationContext';
 import VehicleInfoResume from './VehicleInfoResume';
 const style = {
@@ -18,7 +17,7 @@ const style = {
   };
 
 const Vehicles = () => {
-    const {vehiclesRole,  loading, setLoading}=useContext(ValidationContext)
+    const {vehiclesRole, loading, setLoading}=useContext(ValidationContext)
     const [open, setOpen] = React.useState(false);
    
     const handleOpen = () => {setOpen(true)};

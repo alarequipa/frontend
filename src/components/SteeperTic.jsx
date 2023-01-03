@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import { styled } from '@mui/material/styles';
-import {Typography, Step, FormHelperText, Alert, AlertTitle, StepLabel, List, ListItem, ListItemButton, ListItemAvatar, Avatar, Button, Stack,  Checkbox, FormControl,TextField} from '@mui/material';
+import {Typography, Step, FormHelperText, Alert, AlertTitle, StepLabel, List, ListItem, ListItemButton, ListItemAvatar, Avatar, Button, Stack, Checkbox, FormControl,TextField} from '@mui/material';
 import Check from '@mui/icons-material/Check';
 import '../styles/steeper.scss'
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
@@ -43,6 +43,7 @@ export default function SteeperTic({handleClose}){
   const isStepOptional = (step) => {
     return step === 1;
   };
+
 
   const QontoConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -197,6 +198,7 @@ export default function SteeperTic({handleClose}){
 			):""}
 			</FormControl>
 
+             {/* <ReactCodeInput type='number' fields={6}/> */}
             </div>
 
          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>

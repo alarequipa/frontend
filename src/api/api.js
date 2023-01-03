@@ -1,5 +1,5 @@
 export class MainApi {
-    endpoint='http://157.245.132.21:3008/'
+    endpoint=`${process.env.REACT_APP_SERVER_URL}:3008`
 
     async savePerson(body){
     let user={

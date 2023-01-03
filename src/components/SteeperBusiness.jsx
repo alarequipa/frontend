@@ -13,7 +13,9 @@ import AppContext from '../context/AppContext';
 import ValidationContext from '../context/ValidationContext';
 
 export default function SteeperBusiness({handleClose}){
+
  
+
     const initialValues={
       businessName: "",
       whatsapp:"",
@@ -29,7 +31,6 @@ export default function SteeperBusiness({handleClose}){
      const businessHeadings = headings.filter((heading)=>{
       return heading.name.includes("Sindicato") || heading.name.includes("RadioTaxi") || heading.name.includes("Asociación de taxis / trufis");
       })
-
 
     
     const handleChangeSelect = async (event) => {

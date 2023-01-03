@@ -13,9 +13,8 @@ import escudopolicia from '../assets/tic/escudopolicia.png'
 import { useParams, useSearchParams, useNavigate} from 'react-router-dom';
 import ValidationContext from '../context/ValidationContext';
 import { useState, useEffect } from 'react';
-import { TicGeneration } from '../api';
 import ReactToPrint from 'react-to-print';
-const vehicleCtrl= new TicGeneration();
+
 const actions = [
     { icon: <ArrowBack />, name: 'Regresar' },
 	{ icon: <QrCode />, name: 'QR' },
@@ -41,23 +40,15 @@ const TicInfo = () => {
     const [loading,setLoading]= useState(false)
     const [openQR, setOpenQR] = useState(false);
     const navigate = useNavigate();
-    const { printTic}=useContext(ValidationContext)
+    const {getTicById, printTic}=useContext(ValidationContext)
     let componentRef= useRef(null)
     let componentRefTic= useRef(null)
-    
     useEffect(()=>{
-       async function getTic(){
+        async function getTic(){
             try{
                 
                 await setLoading(true)
-                const newTic=async()=>{
-                    try{
-                        const response=await vehicleCtrl.getTicById(id)
-                        return response
-                    }catch(error){
-                        throw error
-                    }
-                } 
+                const newTic= await getTicById(id)
                 await console.log(newTic)
                 await setTic(newTic)
             }catch(error){
@@ -68,10 +59,9 @@ const TicInfo = () => {
 
         }
         getTic()
-    },[id])
+    },[getTicById, id])
     const handleOpenQR = () => {setOpenQR(true)};
     const handleCloseQR = () => {setOpenQR(false)};
-
     const handleClick=(action)=>{
 		if(action==="Regresar"){
             navigate(`/home/dashboard`)
@@ -197,7 +187,7 @@ const TicInfo = () => {
                             <div className='h-20 w-20 col-span-1 rounded-md overflow-hidden relative'>
                             <img
                                     className="max-w-none w-full h-auto box-border min-h-full min-w-full absolute m-auto"                     
-                                    src={`http://157.245.132.21:3003/uploads/business/image/${vehicleRole.business.image}`}
+                                    src={`http://localhost:3003/uploads/business/image/${vehicleRole.business.image}`}
                                     alt="Empresa"
                                 />
                                 </div>
@@ -282,7 +272,7 @@ const TicInfo = () => {
                         <img
                                 className="box-border min-h-full min-w-full absolute m-auto" 
                                 src={tic.qrCode}
-                                alt="Vehicle tic"
+                                alt="Vehicle"
                             />
 
                             </div>  
@@ -291,13 +281,13 @@ const TicInfo = () => {
                         <div className='logos print-heading overflow-hidden w-full h-6 print-logos grid grid-cols-4 justify-center content-center'>
                             <div className='col-span-2 p-3'>
                             <div className='grid grid-cols-2 items-center'>
-                            <img className='col-span-1 mr-2' src={escplurinacional} alt="logo estado plurinacional"/>
-                            <img className='col-span-1 ml-2' src={letras}  alt="letra estado"/>
+                            <img className='col-span-1 mr-2' src={escplurinacional} alt="escudo"/>
+                            <img className='col-span-1 ml-2' src={letras} alt="letras" />
                             </div>
                             </div>
                             <div className='col-span-2 p-3'>
                             <div className='grid grid-cols-2 items-center'>
-                            <img className='col-end-3 col-span-1' alt="escudo pol" src={escudopolicia}/>
+                            <img className='col-end-3 col-span-1' src={escudopolicia} alt="escudo"/>
                             </div>
                             </div>
                         </div>
@@ -310,7 +300,7 @@ const TicInfo = () => {
                             <img
                                 className="box-border m-auto w-full h-full" 
                                 src={tic.qrCode}
-                                alt="Vehicle tic"
+                                alt="Vehicle"
                             /> 
                             </div>
                             <div className='w-4/6 flex flex-wrap text-center justify-center'>
@@ -458,13 +448,13 @@ const TicInfo = () => {
                         <div className='logos print-heading overflow-hidden w-full h-6 print-logos grid grid-cols-4 justify-center content-center'>
                             <div className='col-span-2 p-3'>
                             <div className='grid grid-cols-2 items-center'>
-                            <img className='col-span-1 mr-2' src={escplurinacional} alt="escudo tic"/>
-                            <img className='col-span-1 ml-2' src={letras} alt="letras tic" />
+                            <img className='col-span-1 mr-2' src={escplurinacional} alt="escudo"/>
+                            <img className='col-span-1 ml-2' src={letras} alt="letras"/>
                             </div>
                             </div>
                             <div className='col-span-2 p-3'>
                             <div className='grid grid-cols-2 items-center'>
-                            <img className='col-end-3 col-span-1' src={escudopolicia} alt="escudo tic"/>
+                            <img className='col-end-3 col-span-1' src={escudopolicia} alt="escudo"/>
                             </div>
                             </div>
                         </div>
@@ -477,7 +467,7 @@ const TicInfo = () => {
                             <img
                                 className="box-border m-auto w-full h-full" 
                                 src={tic.qrCode}
-                                alt="Vehicle tic"
+                                alt="Vehicle"
                             /> 
                             </div>
                             <div className='w-4/6 flex flex-wrap text-center justify-center'>
@@ -499,13 +489,13 @@ const TicInfo = () => {
                         <div className='logos print-heading overflow-hidden w-full h-6 print-logos grid grid-cols-4 justify-center content-center'>
                             <div className='col-span-2 p-3'>
                             <div className='grid grid-cols-2 items-center'>
-                            <img className='col-span-1 mr-2' src={escplurinacional} alt="escudo tic" />
-                            <img className='col-span-1 ml-2' src={letras} alt="letras tic" />
+                            <img className='col-span-1 mr-2' src={escplurinacional}  alt="escudo"/>
+                            <img className='col-span-1 ml-2' src={letras}  alt="letras" />
                             </div>
                             </div>
                             <div className='col-span-2 p-3'>
                             <div className='grid grid-cols-2 items-center'>
-                            <img className='col-end-3 col-span-1' src={escudopolicia} alt="escudo tic"/>
+                            <img className='col-end-3 col-span-1' src={escudopolicia}  alt="escudo"/>
                             </div>
                             </div>
                         </div>

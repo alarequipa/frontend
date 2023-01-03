@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+
 import InfoPerson from '../components/InfoPerson';
 import Vehicles from '../components/Vehicles';
 import Tic from '../components/Tic';

@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Card,TextField, Button, Box, IconButton } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
-import {  RemoveRedEye } from '@mui/icons-material';
+import { RemoveRedEye } from '@mui/icons-material';
 import ValidationContext from '../context/ValidationContext';
 import { useNavigate } from 'react-router-dom';
 
 const Polices =  () => {
     const navigate = useNavigate();
-    const { findTicByPlaque, findTicByCi, setSelectedTic}=useContext(ValidationContext)
+    const {findTicByPlaque, findTicByCi, setSelectedTic}=useContext(ValidationContext)
     const [ticFinded, setTicFinded]=useState('')
     const [plaque, setPlaque]=useState('')
     const [ci, setCi]=useState('')

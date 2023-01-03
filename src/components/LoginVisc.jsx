@@ -9,19 +9,17 @@ import FormControl from '@mui/material/FormControl';
 import { FormHelperText, TextField,Button } from '@mui/material';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import IconButton from '@mui/material/IconButton';
-
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ValidationContext from '../context/ValidationContext';
 import Page from '../containers/Page';
-
 import { Link, useNavigate } from 'react-router-dom';
 import { AccountContext } from '../context/AccountContext';
 
 const LoginVisc = () => {
 	  const {setUser}= useContext(AccountContext)
-	  const {loginEmail }=useContext(ValidationContext);
+	  const { loginEmail }=useContext(ValidationContext);
 	  const [showPassword, setShowPassword]= useState(false)
 
 	  const navigate = useNavigate();

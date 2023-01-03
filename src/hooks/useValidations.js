@@ -25,7 +25,7 @@ const useValidations = () => {
     const [rubro, setRubro] = useState('');
     const [radicatoria, setRadicatoria] = useState('');
 	const [empresa, setEmpresa] = useState('');
-    const url = 'http://157.245.132.21:3000/tic/'
+    const url = 'http://localhost:3006/tic/'
     const [headings, setHeadings]=useState([])
     const [radioTaxis, setRadioTaxis]=useState([])
     const [asociacion, setAsociacion]=useState([])
@@ -573,8 +573,8 @@ const updateBusinessVehicles=async(id)=>{
 }
 const deleteBusiness=async(id)=>{
     try{
-        const response=await vehicleCtrl.deleteBusiness(id)    
-        return response   
+        const response=await vehicleCtrl.deleteBusiness(id)     
+        return response  
     }catch(error){
         throw error
     }finally{
@@ -583,8 +583,8 @@ const deleteBusiness=async(id)=>{
 } 
 const verifyVehicleBusiness=async(id)=>{
     try{
-        const response=await vehicleCtrl.verifyVehicleBusiness(id)   
-        return response    
+        const response=await vehicleCtrl.verifyVehicleBusiness(id)       
+        return response
     }catch(error){
         throw error
     }finally{
@@ -670,7 +670,6 @@ const getTicById=async(id)=>{
         saveDriver,
         saveTic,
         getTic,
-        setVehiclesRole,
         getVehicleRolesById,
         getTicById,
         getVehicleRoles,
@@ -705,7 +704,6 @@ const getTicById=async(id)=>{
         findVehicleByPlaque,
         selectedBusiness,
         date,
-        setTic,
         setDate,
         setSelectedBusiness
     }
