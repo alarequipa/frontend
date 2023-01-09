@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {initialState} from "../initialstate";
 import { MainApi, Validations, TicGeneration } from "../api";
 import { Storage } from "../services/storage";
 import QRCode from 'qrcode';
 import Swal from 'sweetalert2';
-
+import { AccountContext } from "../context/AccountContext";
 const apiCtrl= new MainApi();
 const validationsCtrl= new Validations();
 const vehicleCtrl= new TicGeneration();
 const storageCtrl= new Storage();
 const useValidations = () => {   
+    const {user}= useContext(AccountContext);
     const [state, setState]= useState(initialState);  
     const [person, setPerson]=useState('');
     const [vehicles, setVehicles]= useState([]);
@@ -126,6 +127,7 @@ const useValidations = () => {
 			return response
 
         } catch (error) {
+            console.log(error)
             setError({
                 message:error.person.respuesta,
                 status:true
@@ -164,6 +166,7 @@ const useValidations = () => {
     const saveUser= async(password,person)=>{
         try {
 			const response=await apiCtrl.createuser(password,person)
+            await localStorage.setItem("token", response.token)
             await storageCtrl.saveStorage(response.person, response.user, response.role)
             await addPerson(response.person)
             console.log(response)
@@ -193,12 +196,13 @@ const useValidations = () => {
                 user:true
             });
 			const response=await apiCtrl.login(body)
+            await localStorage.setItem("token", response.token)
             await storageCtrl.saveStorage(response.person, response.user, response.roles, "","")
             await addRole(response.roles)
             if(response.roles.owner || response.roles.driver){
                 console.log("aqui llego")
-                const vehicleRoles= await vehicleCtrl.getVehicleRole();
-                const ticFinded= await vehicleCtrl.getTic();
+                const vehicleRoles= await vehicleCtrl.getVehicleRole(user.token);
+                const ticFinded= await vehicleCtrl.getTic(user.token);
                 await setTic(ticFinded);
                 await setVehiclesRole(vehicleRoles);                
                 await storageCtrl.saveStorage("","","",vehicleRoles, ticFinded);
@@ -261,7 +265,7 @@ const useValidations = () => {
 	}
     const getRoles=async()=>{
         try{
-            const response=await apiCtrl.getRole()
+            const response=await apiCtrl.getRole(user.token)
             await localStorage.setItem('role', JSON.stringify(response))
             await setRole(response)
             await setState({
@@ -294,7 +298,7 @@ const useValidations = () => {
                 ...loading,
                 vehicle:true
             });
-			const response=await vehicleCtrl.saveVehicle(body)
+			const response=await vehicleCtrl.saveVehicle(user.token, body)
              let vehicleToSave1={
                     id:response._id,
                     color:response.color,
@@ -381,7 +385,7 @@ const useValidations = () => {
         let vehicle=""
         try{
             console.log(vehicleToSave)
-            const response=await vehicleCtrl.saveDriver(vehicleToSave, heading, business, radicatory)
+            const response=await vehicleCtrl.saveDriver(user.token, vehicleToSave, heading, business, radicatory)
             vehicle=response
         }catch(error){
             throw error
@@ -395,7 +399,7 @@ const useValidations = () => {
         let vehicle=""
         try{
             console.log(vehicleToSave)
-            const response=await vehicleCtrl.saveOwner(vehicleToSave, heading, business, radicatory)
+            const response=await vehicleCtrl.saveOwner(user.token, vehicleToSave, heading, business, radicatory)
             console.log(response)
             vehicle=response
         }catch(error){
@@ -409,7 +413,7 @@ const useValidations = () => {
     } 
     const saveTic=async(vehicle)=>{
         try{
-            const response=await vehicleCtrl.saveTic(vehicle)
+            const response=await vehicleCtrl.saveTic(user.token, vehicle)
             await addTic(response.tic)
             await localStorage.setItem('tic', JSON.stringify(response.tic))
             console.log(response)
@@ -423,7 +427,7 @@ const useValidations = () => {
     const getTic=async()=>{
         try{
             console.log(vehicleToSave)
-            const response=await vehicleCtrl.getTic()
+            const response=await vehicleCtrl.getTic(user.token)
             await localStorage.setItem('tic', JSON.stringify(response))
             await setTic(response)
 
@@ -493,7 +497,7 @@ const useValidations = () => {
 //VEHICLEROLES
     const activateVehicle=async(id)=>{
         try{
-            const response=await vehicleCtrl.activateVehicle(id)
+            const response=await vehicleCtrl.activateVehicle(user.token, id)
             console.log(response);
         }catch(error){
             throw error
@@ -501,7 +505,7 @@ const useValidations = () => {
     }
     const getVehicleRoles=async()=>{
         try{
-            const response=await vehicleCtrl.getVehicleRole()
+            const response=await vehicleCtrl.getVehicleRole(user.token)
             await localStorage.setItem('vehicles', JSON.stringify(response))
             await setVehiclesRole(response)
 
@@ -528,10 +532,10 @@ const useValidations = () => {
     } 
 
 // RUBROS
-    const getHeadings= async()=>{
+const getHeadings= async()=>{
 		try{
 			const response= await vehicleCtrl.getHeadings()
-			await console.log( await response.headings)
+			await console.log( await response)
             await localStorage.setItem('headings', JSON.stringify(response))
             await setHeadings(response)
 		}catch(error){
@@ -540,9 +544,33 @@ const useValidations = () => {
 	  }
 
 //BUSINESS
+const getBusinesses= async()=>{
+    try{
+        const response= await vehicleCtrl.getBusinesses()
+        if(response && response!=="" && response.length >=1){
+            const radioTaxis = await response.filter((business)=>{
+                return business.type.name.includes("RadioTaxi");
+            })
+            const sindicato = await response.filter((business)=>{
+                return business.type.name.includes("Sindicato");
+            })
+            const asociacion = await response.filter((business)=>{
+                return business.type.name.includes("Asociación de taxis / trufis");
+            })
+            await console.log(response, radioTaxis, sindicato, asociacion)
+
+            await setRadioTaxis(radioTaxis)
+            await setAsociacion(asociacion)
+            await setSindicato(sindicato)
+        }
+    }catch(error){
+        console.log(error)
+    }
+  }
+
 const saveBusiness=async(business, rubro)=>{
     try{
-        const response=await vehicleCtrl.saveBusiness(business,rubro._id)
+        const response=await vehicleCtrl.saveBusiness(user.token,business,rubro._id)
         await setEmpresa(response.business)
         return response.business            
     }catch(error){
@@ -554,7 +582,7 @@ const saveBusiness=async(business, rubro)=>{
 const updateBusiness=async(id, business)=>{
     try{
         await setLoadingBusiness(true)
-        const response=await vehicleCtrl.updateBusiness(id, business)
+        const response=await vehicleCtrl.updateBusiness(user.token, id, business)
         return response.business            
     }catch(error){
         throw error
@@ -573,7 +601,7 @@ const updateBusinessVehicles=async(id)=>{
 }
 const deleteBusiness=async(id)=>{
     try{
-        const response=await vehicleCtrl.deleteBusiness(id)     
+        const response=await vehicleCtrl.deleteBusiness(user.token, id)     
         return response  
     }catch(error){
         throw error
@@ -669,6 +697,7 @@ const getTicById=async(id)=>{
         saveOwner,
         saveDriver,
         saveTic,
+        getBusinesses,
         getTic,
         getVehicleRolesById,
         getTicById,

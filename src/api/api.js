@@ -122,7 +122,7 @@ export class MainApi {
 
     
     };
-    async getRole(){
+    async getRole(token){
         try {
             const response= await fetch(this.endpoint+"getRoles", {
                 method: 'GET',
@@ -130,7 +130,8 @@ export class MainApi {
                 cache: 'no-cache',
                 credentials:"include",
                 headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "authorization": `Bearer ${token}`
                  },
                 redirect: 'follow',
             })

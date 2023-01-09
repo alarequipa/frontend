@@ -1,7 +1,7 @@
 export class TicGeneration {
     endpoint=`${process.env.REACT_APP_SERVER_URL}`
 
-    async saveVehicle(body){
+    async saveVehicle(token, body){
         
         try {
             console.log("estamosguardado")
@@ -11,7 +11,8 @@ export class TicGeneration {
                 cache: 'no-cache',
                 credentials:"include",
                 headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "authorization": `Bearer ${token}`
                  },
                 redirect: 'follow',
                 body: JSON.stringify(body)
@@ -21,8 +22,7 @@ export class TicGeneration {
             return result
         } catch (error) {
             throw error
-        }
-            
+        }            
         };
 
         async findVehicle(params){
@@ -37,17 +37,14 @@ export class TicGeneration {
                     'Content-Type': 'application/json'
                      },
                     redirect: 'follow',
-                })
-          
-            const result= await response.json();
+                })          
+        const result= await response.json();
             if(response.status !== 200) throw result
             return result
             } catch (error) {
               throw error
-            }
-     
+            }     
         }
-
         async getHeadings(){
             try {
                 const response= await fetch(this.endpoint+"getHeadings", {
@@ -90,7 +87,7 @@ export class TicGeneration {
             }
      
         }
-        async updateBusiness(id, business){
+        async updateBusiness(token, id, business){
             try {
                 const response= await fetch(this.endpoint+"updateBusiness/"+id, {
                     method: 'PUT',
@@ -98,7 +95,8 @@ export class TicGeneration {
                     cache: 'no-cache',
                     credentials:"include",
                     headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "authorization": `Bearer ${token}`
                      },
                     redirect: 'follow',
                     body: JSON.stringify(business)
@@ -135,7 +133,7 @@ export class TicGeneration {
             }
      
         }
-        async deleteBusiness(id){
+        async deleteBusiness(token, id){
             try {
                 const response= await fetch(this.endpoint+"deleteBusiness/"+id, {
                     method: 'PUT',
@@ -143,7 +141,8 @@ export class TicGeneration {
                     cache: 'no-cache',
                     credentials:"include",
                     headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "authorization": `Bearer ${token}`
                      },
                     redirect: 'follow',
                 })
@@ -155,9 +154,7 @@ export class TicGeneration {
             }
      
         }
-        
     async uploadBusinessImage(data, id){
-
         try {
             const response= await fetch(this.endpoint+"uploads/business/image/"+id, {
                 method: 'PUT',
@@ -171,12 +168,9 @@ export class TicGeneration {
             return result
         } catch (error) {
             throw error
-        }
-       
-    }
-    
-
-        async saveDriver(vehicle, heading, business=null){        
+        }       
+    } 
+    async saveDriver(token, vehicle, heading, business=null){        
             try {
                 console.log(vehicle, heading, business)
                 const response= await fetch(this.endpoint+"createDriver", {
@@ -185,7 +179,8 @@ export class TicGeneration {
                     cache: 'no-cache',
                     credentials:"include",
                     headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "authorization": `Bearer ${token}`
                      },
                     redirect: 'follow',
                     body: JSON.stringify({vehicleSave:vehicle, heading:heading, business:business})
@@ -198,7 +193,7 @@ export class TicGeneration {
             }
                 
             };
-            async saveOwner(vehicle, heading, business=null){        
+            async saveOwner(token, vehicle, heading, business=null){        
                 try {
                     const response= await fetch(this.endpoint+"createOwner", {
                         method: 'POST',
@@ -206,7 +201,8 @@ export class TicGeneration {
                         cache: 'no-cache',
                         credentials:"include",
                         headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        "authorization": `Bearer ${token}`
                          },
                         redirect: 'follow',
                         body: JSON.stringify({vehicleSave:vehicle, heading:heading, business:business})
@@ -257,7 +253,7 @@ export class TicGeneration {
                         throw error
                     }
                 }
-                async getVehicleRole(){
+                async getVehicleRole(token){
                     try {
                         const response= await fetch(this.endpoint+"findVehicleRole", {
                             method: 'GET',
@@ -265,7 +261,8 @@ export class TicGeneration {
                             cache: 'no-cache',
                             credentials:"include",
                             headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            "authorization": `Bearer ${token}`
                              },
                             redirect: 'follow',
                         })
@@ -277,7 +274,7 @@ export class TicGeneration {
                     }
                 }
 
-            async saveTic(vehicle){        
+            async saveTic(token, vehicle){        
                 try {
                     const response= await fetch(this.endpoint+"createTic", {
                         method: 'POST',
@@ -285,7 +282,8 @@ export class TicGeneration {
                         cache: 'no-cache',
                         credentials:"include",
                         headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        "authorization": `Bearer ${token}`
                             },
                         redirect: 'follow',
                         body: JSON.stringify({vehicle})
@@ -298,7 +296,7 @@ export class TicGeneration {
                 }
                     
                 };
-            async getTic(){        
+            async getTic(token){        
             try {
                     const response= await fetch(this.endpoint+"findTic", {
                         method: 'GET',
@@ -306,7 +304,8 @@ export class TicGeneration {
                         cache: 'no-cache',
                         credentials:"include",
                         headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        "authorization": `Bearer ${token}`
                             },
                         redirect: 'follow',
                     })
@@ -410,7 +409,7 @@ export class TicGeneration {
                         throw error
                     }                
                 };
-                async saveBusiness(business, type){        
+                async saveBusiness(token, business, type){        
                     try {
                         const response= await fetch(this.endpoint+"createBusiness", {
                             method: 'POST',
@@ -418,7 +417,8 @@ export class TicGeneration {
                             cache: 'no-cache',
                             credentials:"include",
                             headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            "authorization": `Bearer ${token}`
                                 },
                             redirect: 'follow',
                             body: JSON.stringify({business, type})
@@ -432,7 +432,7 @@ export class TicGeneration {
                         
                     };
 
-                    async activateVehicle(id){        
+                    async activateVehicle(token, id){        
                         try {
                                 const response= await fetch(this.endpoint+"activateVehicleRole/"+id, {
                                     method: 'PUT',
@@ -440,7 +440,8 @@ export class TicGeneration {
                                     cache: 'no-cache',
                                     credentials:"include",
                                     headers: {
-                                    'Content-Type': 'application/json'
+                                    'Content-Type': 'application/json',
+                                    "authorization": `Bearer ${token}`
                                         },
                                     redirect: 'follow',
                                 })

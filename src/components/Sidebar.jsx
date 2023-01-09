@@ -4,15 +4,19 @@ import {Dashboard, Logout, AssignmentInd, LocalPolice}from '@mui/icons-material/
 import AdminNavbar from './NavBar';
 import AuthContext from '../context/AuthContext';
 import ValidationContext from '../context/ValidationContext';
+import { AccountContext } from "../context/AccountContext";
 
 
 const Sidebar = () => {
     const [showSidebar, setShowSidebar] = useState('-left-64');
     const navigate = useNavigate();
     const {role}= useContext(ValidationContext)
+    const {setUser}= useContext(AccountContext);
+
     const {logoutAuth}=useContext(AuthContext);
     const handleLogout =() => {
         localStorage.clear();
+        setUser({loggedIn:false, token:""})
         navigate('/login')
         logoutAuth()
         };
@@ -24,7 +28,7 @@ const Sidebar = () => {
                 setShowSidebar={setShowSidebar}
             />
             <div
-                className={`h-screen fixed top-0 md:left-0 ${showSidebar} overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-xl bg-white w-64 z-10 py-4 px-6 transition-all duration-300`}
+                className={`h-screen fixed top-0 md:left-0 ${showSidebar} overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-xl bg-white w-64 py-4 px-6 transition-all duration-300 z-50`}
             >
                 <div className="flex-col items-stretch min-h-full flex-nowrap px-0 relative">
                     <a
@@ -50,7 +54,7 @@ const Sidebar = () => {
                                 </NavLink>
                             </li>
 
-                            {(role.business && role.business!==[] &&role.business!=="")?(
+                            {(role.business && role.business.length>=1 && role.business!=="")?(
                                 <li className="rounded-lg mb-4">
                                 <NavLink
                                     to="/home/business"

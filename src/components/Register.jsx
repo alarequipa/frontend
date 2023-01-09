@@ -37,6 +37,7 @@ const Register = () => {
 
 			navigate('/validate')
 		}else{
+			console.log("estamos verificando")
 			const finded= await verifyPerson(personFind)
 			console.log(finded)
 			if(await finded.person && finded.person.FechaNacimiento===((date.toDate()).toLocaleDateString())){	
