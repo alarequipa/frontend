@@ -258,7 +258,6 @@ export class TicGeneration {
                     try {
                         const response= await fetch(this.endpoint+"findVehicleRole", {
                             method: 'GET',
-                            mode: 'cors', 
                             cache: 'no-cache',
                             credentials:"include",
                             headers: {

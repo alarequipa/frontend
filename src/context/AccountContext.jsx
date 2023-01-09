@@ -9,6 +9,7 @@ const UserContext=({children})=>{
     useEffect(()=>{
         fetch(`${process.env.REACT_APP_SERVER_URL}loginCi`,{
             credentials:"include",
+            mode: 'cors', 
             headers:{
                 "authorization": `Bearer ${user.token}`,
                 "Access-Control-Allow-Origin": "*"

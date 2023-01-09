@@ -21,7 +21,6 @@ export class MainApi {
     try {
         const response= await fetch(this.endpoint+"createPerson", {
             method: 'POST',
-            mode: 'cors', 
             cache: 'no-cache',
             credentials:"include",
             headers: {
@@ -61,7 +60,6 @@ export class MainApi {
         try {
             const response= await fetch(this.endpoint+"findPersonCi/"+params, {
                 method: 'GET',
-                mode: 'cors', 
                 cache: 'no-cache',
                 credentials:"include",
                 headers: {
@@ -104,7 +102,6 @@ export class MainApi {
     try {
         const response= await fetch(this.endpoint+"registerByPerson", {
             method: 'POST',
-            mode: 'cors', 
             cache: 'no-cache',
             credentials:"include",
             headers: {
@@ -126,7 +123,6 @@ export class MainApi {
         try {
             const response= await fetch(this.endpoint+"getRoles", {
                 method: 'GET',
-                mode: 'cors', 
                 cache: 'no-cache',
                 credentials:"include",
                 headers: {
