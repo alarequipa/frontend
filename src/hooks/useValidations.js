@@ -26,12 +26,13 @@ const useValidations = () => {
     const [rubro, setRubro] = useState('');
     const [radicatoria, setRadicatoria] = useState('');
 	const [empresa, setEmpresa] = useState('');
-    const url = 'http://localhost:3006/tic/'
+    const url = `${process.env.REACT_APP_SERVER_URL}tic/`
     const [headings, setHeadings]=useState([])
     const [radioTaxis, setRadioTaxis]=useState([])
     const [asociacion, setAsociacion]=useState([])
     const [sindicato, setSindicato]=useState([])
     const [date, setDate]=useState("");
+    const [reload, setReload]=useState(false);
 
 
 
@@ -393,6 +394,8 @@ const useValidations = () => {
             if(business || business!==""){
                 await vehicleCtrl.updateBusinessVehicles(vehicle._id, business._id)
             }
+            await getVehicleRoles()
+
         }
     } 
     const saveOwner=async(vehicleToSave, heading, business, radicatory)=>{
@@ -408,6 +411,8 @@ const useValidations = () => {
             if(business || business!==""){
                 await vehicleCtrl.updateBusinessVehicles(vehicle._id, business._id)
             }
+            await getVehicleRoles()
+
 
         }
     } 
@@ -507,8 +512,9 @@ const useValidations = () => {
         try{
             const response=await vehicleCtrl.getVehicleRole(user.token)
             await localStorage.setItem('vehicles', JSON.stringify(response))
+            console.log(response)
             await setVehiclesRole(response)
-
+            return response
         }catch(error){
             throw error
         }
@@ -576,6 +582,7 @@ const saveBusiness=async(business, rubro)=>{
     }catch(error){
         throw error
     }finally{
+        await setReload(!reload)
         await getRoles()
     }
 } 
@@ -668,6 +675,7 @@ const getTicById=async(id)=>{
         setVehicleToSave,
         vehicleToFind,
         setVehicleToFind,
+        setVehiclesRole,
         vehiclesRole,
         saveVehicle,
         loading,
@@ -697,6 +705,8 @@ const getTicById=async(id)=>{
         saveOwner,
         saveDriver,
         saveTic,
+        setReload,
+        reload,
         getBusinesses,
         getTic,
         getVehicleRolesById,

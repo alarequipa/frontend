@@ -28,13 +28,14 @@ export default function HorizontalLinearStepper({handleClose}){
 
   const handleChangeSelect = async (event) => {
     await setRubro(event.target.value);
+    console.log(rubro)
 
   };
-  const handleChangeAuto = (event, newValue) => {
-    setEmpresa(newValue);
+  const handleChangeAuto = async (event, newValue) => {
+    await setEmpresa(newValue);
   };
-  const handleChangeRadicatoria = (event, newValue) => {
-    setRadicatoria(newValue);
+  const handleChangeRadicatoria = async (event, newValue) => {
+    await setRadicatoria(newValue);
     console.log(event.target.value)
   };
   const isStepOptional = (step) => {
@@ -119,10 +120,15 @@ export default function HorizontalLinearStepper({handleClose}){
   };
   const handleNext = async () => {
     if(activeStep === 0 ){
-      const vehicle= JSON.parse(await localStorage.getItem('vehicles')); 
-      if(!vehicle || vehicle.length<1){
+      if(await localStorage.getItem('vehicles') && await localStorage.getItem('vehicles') !== "undefined" ){
+        const vehicle= JSON.parse(await localStorage.getItem('vehicles')); 
+        if(!vehicle || vehicle.length<1){
+          await saveVehicle(vehicleToSave)
+        }
+      }else{
+        console.log(vehicleToSave)
         await saveVehicle(vehicleToSave)
-      }
+      }      
     }
     if(activeStep === steps.length - 2 ){
       if(conductor && propietario){

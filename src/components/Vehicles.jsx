@@ -20,7 +20,8 @@ const Vehicles = () => {
     const {vehiclesRole, loading, setLoading}=useContext(ValidationContext)
     const [open, setOpen] = React.useState(false);
    
-    const handleOpen = () => {setOpen(true)};
+    const handleOpen = () => {setOpen(true);
+    console.log(vehiclesRole)};
     const handleClose = () => {setOpen(false)
         setLoading({
             ...loading,

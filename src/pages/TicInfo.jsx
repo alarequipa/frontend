@@ -139,7 +139,7 @@ const TicInfo = () => {
             {tic.vehicleRoleId.map(vehicleRole=>(
                 <>
                 {(vehicleRole.active)?(
-                    <div className="px-1 py-1 md:grid md:grid-cols-3 md:gap-4 md:px-6">
+                    <div key={vehicleRole._id} className="px-1 py-1 md:grid md:grid-cols-3 md:gap-4 md:px-6">
                     <dt className="text-sm col-span-3 ticCardTitle my-1 ticCarColorText uppercase font-medium text-gray-500">Datos del vehiculo</dt>
                     <div className='ticBackground col-span-3 grid grid-cols-3'>
                     <div className='col-span-3 my-3 p-0 text-white grid grid-cols-3'> 
@@ -213,7 +213,7 @@ const TicInfo = () => {
                     </div>
                 </div>  
                 ):(
-                    <div className=" px-1 py-1 mb-7 md:grid md:grid-cols-3 md:gap-4 md:px-6">
+                    <div key={vehicleRole._id} className=" px-1 py-1 mb-7 md:grid md:grid-cols-3 md:gap-4 md:px-6">
                     <dt className="text-sm ticCardTitle col-span-3 my-1 ticCarColorText uppercase font-medium">Otros vehiculos</dt>
                     <div className=' bg-gray-300 px-4 col-span-3 grid grid-cols-3'>
                     <ListItem

@@ -35,6 +35,7 @@ export default function SteeperBusiness({handleClose}){
     
     const handleChangeSelect = async (event) => {
             await setRubro(event.target.value);
+            console.log(event.target.value)
           };
           
     const isStepSkipped = (step) => {

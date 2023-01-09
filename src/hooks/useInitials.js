@@ -5,14 +5,14 @@ import { TicGeneration } from "../api";
 
 const vehicleCtrl= new TicGeneration();
 const useBusiness =() =>{
-    const {addPerson, getRoles,empresa,getTic,getBusinesses,vehiclesRole,qrcode, getHeadings, headings}= useContext(ValidationContext)
+    const {addPerson, getRoles,getTic,setVehiclesRole,reload, getBusinesses, qrcode, getHeadings, headings}= useContext(ValidationContext)
     const {user}= useContext(AccountContext);
     const initialData = useCallback(async () => {
         await addPerson(user.person)
         await getRoles()
         await getHeadings()
  //eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [empresa]);
+        }, [reload]);
     
     useEffect(()=>{
             async function businessRenew(){
@@ -21,16 +21,17 @@ const useBusiness =() =>{
             }
             businessRenew()
         //eslint-disable-next-line react-hooks/exhaustive-deps
-    },[empresa])
+    },[reload])
     
     useEffect(()=>{
         async function vehiclesRenew(){
             await console.log("ejecutado2")
-            await vehicleCtrl.getVehicleRole(user.token)
+            const vehicles=await vehicleCtrl.getVehicleRole(user.token)
+            await setVehiclesRole(vehicles)
         }
         vehiclesRenew()
          //eslint-disable-next-line react-hooks/exhaustive-deps
-    },[vehiclesRole])
+    },[reload])
 
     useEffect(()=>{
         async function test2(){
