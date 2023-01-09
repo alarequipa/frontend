@@ -10,7 +10,8 @@ const UserContext=({children})=>{
         fetch(`${process.env.REACT_APP_SERVER_URL}loginCi`,{
             credentials:"include",
             headers:{
-                "authorization": `Bearer ${user.token}`
+                "authorization": `Bearer ${user.token}`,
+                "Access-Control-Allow-Origin": "*"
             }
         }).catch(err=>{
             setUser({loggedIn:false})

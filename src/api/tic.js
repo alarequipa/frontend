@@ -12,7 +12,8 @@ export class TicGeneration {
                 credentials:"include",
                 headers: {
                 'Content-Type': 'application/json',
-                "authorization": `Bearer ${token}`
+                "authorization": `Bearer ${token}`,
+                "Access-Control-Allow-Origin": "*"
                  },
                 redirect: 'follow',
                 body: JSON.stringify(body)
@@ -262,7 +263,8 @@ export class TicGeneration {
                             credentials:"include",
                             headers: {
                             'Content-Type': 'application/json',
-                            "authorization": `Bearer ${token}`
+                            "authorization": `Bearer ${token}`,
+                            "Access-Control-Allow-Origin": "*"
                              },
                             redirect: 'follow',
                         })
