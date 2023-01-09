@@ -264,7 +264,7 @@ export class TicGeneration {
                             headers: {
                             'Content-Type': 'application/json',
                             "authorization": `Bearer ${token}`,
-                            "Access-Control-Allow-Origin": "*"
+                            "Access-Control-Allow-Origin": "https://tic-service.netlify.app"
                              },
                             redirect: 'follow',
                         })
