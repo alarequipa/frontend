@@ -16,10 +16,12 @@ const UserContext=({children})=>{
             }
         }).catch(err=>{
             setUser({loggedIn:false})
+            localStorage.clear()
             return
         }).then(res=>{
             if(!res||!res.ok|| res.status>=400){
                 setUser({loggedIn:false})
+                localStorage.clear()
                 return
             }
             return res.json();

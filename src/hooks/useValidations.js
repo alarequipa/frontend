@@ -26,7 +26,8 @@ const useValidations = () => {
     const [rubro, setRubro] = useState('');
     const [radicatoria, setRadicatoria] = useState('');
 	const [empresa, setEmpresa] = useState('');
-    const url = `${process.env.REACT_APP_SERVER_URL}tic/`
+    // const url = `${process.env.REACT_APP_SERVER_URL}tic/`
+    const url = `https://tic-qr.netlify.app/#/tic/`
     const [headings, setHeadings]=useState([])
     const [radioTaxis, setRadioTaxis]=useState([])
     const [asociacion, setAsociacion]=useState([])

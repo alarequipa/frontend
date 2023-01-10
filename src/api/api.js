@@ -1,5 +1,6 @@
 export class MainApi {
     endpoint=`${process.env.REACT_APP_SERVER_URL}`
+    // endpoint=`http://localhost:3008/`
 
     async savePerson(body){
     let user={
@@ -21,6 +22,7 @@ export class MainApi {
     try {
         const response= await fetch(this.endpoint+"createPerson", {
             method: 'POST',
+            mode: 'cors', 
             cache: 'no-cache',
             credentials:"include",
             headers: {
@@ -60,6 +62,7 @@ export class MainApi {
         try {
             const response= await fetch(this.endpoint+"findPersonCi/"+params, {
                 method: 'GET',
+                mode: 'cors', 
                 cache: 'no-cache',
                 credentials:"include",
                 headers: {
@@ -102,6 +105,7 @@ export class MainApi {
     try {
         const response= await fetch(this.endpoint+"registerByPerson", {
             method: 'POST',
+            mode: 'cors', 
             cache: 'no-cache',
             credentials:"include",
             headers: {
@@ -123,6 +127,7 @@ export class MainApi {
         try {
             const response= await fetch(this.endpoint+"getRoles", {
                 method: 'GET',
+                mode: 'cors', 
                 cache: 'no-cache',
                 credentials:"include",
                 headers: {

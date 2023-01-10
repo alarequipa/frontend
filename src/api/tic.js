@@ -1,6 +1,6 @@
 export class TicGeneration {
     endpoint=`${process.env.REACT_APP_SERVER_URL}`
-
+    // endpoint=`http://localhost:3008/`
     async saveVehicle(token, body){
         
         try {
@@ -263,7 +263,7 @@ export class TicGeneration {
                             headers: {
                             'Content-Type': 'application/json',
                             "authorization": `Bearer ${token}`,
-                            "Access-Control-Allow-Origin": "https://tic-service.netlify.app"
+ 
                              },
                             redirect: 'follow',
                         })

@@ -1,5 +1,6 @@
 export class Validations {
     endpoint=`${process.env.REACT_APP_SERVER_URL}`
+    // endpoint=`http://localhost:3008/`
     async verifyPerson(body){
     try {
         const response= await fetch(this.endpoint+"validatePerson", {
