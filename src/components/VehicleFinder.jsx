@@ -3,7 +3,7 @@ import {TextField,FormControl } from '@mui/material';
 import ValidationContext from '../context/ValidationContext';
 
 const VehicleFinder = () => {
-    const {findVehicleByPlaque, vehicleToFind, verifyVehicle, setVehicleToSave, setVehicleToFind, addVehicle}=useContext(ValidationContext)
+    const {findVehicleByPlaque, vehicleToFind,vehicles, verifyVehicle, setVehicleToSave, setVehicleToFind, addVehicle}=useContext(ValidationContext)
   
     const handleChange =  (prop) => (event) => {
         setVehicleToFind({ ...vehicleToFind, [prop]: event.target.value.toUpperCase()});
@@ -23,7 +23,7 @@ const VehicleFinder = () => {
                 }
                await setVehicleToSave(vehicleToSave1)
                await addVehicle(vehicleSaved)
-               await localStorage.setItem("vehicles", JSON.stringify([vehicleSaved]))
+               await localStorage.setItem("vehicles", JSON.stringify([vehicles]))
                console.log("encontrado en tu base de datos")
             }else{
                 const validVehicle= await verifyVehicle(vehicleToFind)

@@ -120,15 +120,9 @@ export default function HorizontalLinearStepper({handleClose}){
   };
   const handleNext = async () => {
     if(activeStep === 0 ){
-      if(await localStorage.getItem('vehicles') && await localStorage.getItem('vehicles') !== "undefined" ){
-        const vehicle= JSON.parse(await localStorage.getItem('vehicles')); 
-        if(!vehicle || vehicle.length<1){
-          await saveVehicle(vehicleToSave)
-        }
-      }else{
         console.log(vehicleToSave)
         await saveVehicle(vehicleToSave)
-      }      
+      
     }
     if(activeStep === steps.length - 2 ){
       if(conductor && propietario){

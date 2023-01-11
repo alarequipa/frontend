@@ -171,7 +171,7 @@ export class TicGeneration {
             throw error
         }       
     } 
-    async saveDriver(token, vehicle, heading, business=null){        
+    async saveDriver(token, vehicle, heading, business=null, radicatory){        
             try {
                 console.log(vehicle, heading, business)
                 const response= await fetch(this.endpoint+"createDriver", {
@@ -184,7 +184,7 @@ export class TicGeneration {
                     "authorization": `Bearer ${token}`
                      },
                     redirect: 'follow',
-                    body: JSON.stringify({vehicleSave:vehicle, heading:heading, business:business})
+                    body: JSON.stringify({vehicleSave:vehicle, heading:heading, business:business, radicatory:radicatory})
                 })
                 const result= await response.json();
                 if(response.status !== 200) throw result
