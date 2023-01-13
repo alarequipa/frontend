@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Card, Modal, Box, Button, CardContent, IconButton} from '@mui/material';
 import ValidationContext from '../context/ValidationContext';
-import { Delete, RemoveRedEye } from '@mui/icons-material';
+import { RemoveRedEye } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 import SteeperTic from './SteeperTic';
@@ -57,11 +57,7 @@ const Tic = () => {
                     <RemoveRedEye />
                     </IconButton> 
                   </li>
-                  <li className="z-30 flex-auto text-center">
-                  <IconButton color="warning" aria-label="Eliminar">
-                    <Delete />
-                    </IconButton>            
-                  </li>
+
                 </ul>
               </div>
             </div>  

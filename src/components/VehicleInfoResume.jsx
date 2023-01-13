@@ -1,10 +1,24 @@
 import React, {useContext} from 'react';
-import { Button, IconButton } from '@mui/material';
+import { Button, IconButton, Modal, Box, CardContent } from '@mui/material';
 import ValidationContext from '../context/ValidationContext';
 import { Delete, RemoveRedEye } from '@mui/icons-material';
+import VehicleInfoCheck from './VehicleInfoCheck';
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 2,
+};
 const VehicleInfoResume = ({vehicle, isBusiness=false}) => {
   const {activateVehicle, verifyVehicleBusiness, deleteVehicleRole}=useContext(ValidationContext)
-
+  const [openInfo, setOpenInfo] = React.useState(false);
+  const handleOpenInfo = () => {setOpenInfo(true)};
+  const handleClose = () => {setOpenInfo(false)}   
     return (
         <>
       <div className="flex-none w-auto max-w-full mx-auto my-auto">
@@ -20,7 +34,7 @@ const VehicleInfoResume = ({vehicle, isBusiness=false}) => {
               <div className="relative right-0">
               <ul className="relative flex flex-wrap p-1 list-none bg-gray-50 rounded-xl" >
                 <li className="z-30 flex-auto text-center">
-                  <IconButton color="primary" aria-label="add to shopping cart">
+                  <IconButton color="primary"  onClick={handleOpenInfo} aria-label="add to shopping cart">
                   <RemoveRedEye />
                   </IconButton>
  
@@ -42,7 +56,7 @@ const VehicleInfoResume = ({vehicle, isBusiness=false}) => {
                 <div className="relative right-0">
                 <ul className="relative flex flex-wrap p-1 list-none bg-gray-50 rounded-xl" >
                   <li className="z-30 flex-auto text-center">
-                    <IconButton color="primary" aria-label="add to shopping cart">
+                    <IconButton color="primary" onClick={handleOpenInfo} aria-label="add to shopping cart">
                     <RemoveRedEye />
                     </IconButton>
    
@@ -57,7 +71,24 @@ const VehicleInfoResume = ({vehicle, isBusiness=false}) => {
               )}
 
             </div>   
-        
+      <Modal
+            open={openInfo}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+        >
+            <Box sx={style} className="w-11/12 lg:w-2/4 max-h-screen">
+            <CardContent >
+            <VehicleInfoCheck vehicle={vehicle}></VehicleInfoCheck>
+            <Button  
+            onClick={handleClose}
+            variant="contained"
+            className="bg-principal relative flex w-full justify-center rounded-md border border-transparent">
+            Ok
+            </Button> 
+		        </CardContent>
+            </Box>
+        </Modal>
         </>
        
  

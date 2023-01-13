@@ -201,14 +201,6 @@ const useValidations = () => {
             await localStorage.setItem("token", response.token)
             await storageCtrl.saveStorage(response.person, response.user, response.roles, "","")
             await addRole(response.roles)
-            if(response.roles.owner || response.roles.driver){
-                console.log("aqui llego")
-                const vehicleRoles= await vehicleCtrl.getVehicleRole(user.token);
-                const ticFinded= await vehicleCtrl.getTic(user.token);
-                await setTic(ticFinded);
-                await setVehiclesRole(vehicleRoles);                
-                await storageCtrl.saveStorage("","","",vehicleRoles, ticFinded);
-            }
             return response
 		} catch (error) {
 			setError({
@@ -522,8 +514,30 @@ const useValidations = () => {
     } 
     const deleteVehicleRole=async(id)=>{
         try{
-            const response=await vehicleCtrl.deleteVehicleRole(id)
-            console.log(response);
+            Swal.fire({
+                title: 'Advertencia!',
+                text: `Está seguro de eliminar este registro?`,
+                icon: 'error',
+                showDenyButton:true,
+                denyButtonText:"No",
+                confirmButtonText:"Sí",
+                confirmButtonColor:'#42a5f5'
+              }).then(async(response)=>{
+                if(response.isConfirmed){
+                    const vehicleRoleDeleted=await vehicleCtrl.deleteVehicleRole(id)
+                    if(vehicleRoleDeleted && vehicleRoleDeleted!==""){
+                        setReload(!reload)
+                        Swal.fire("Éxito", "El registro se elimino correctamente");
+                    }else if(response.isDenied){
+                        Swal.fire("Información", "No se ha realizado ningún cambio", "info");
+                    }else{
+                        Swal.fire("Error", "Algo ha salido mal, vuelve a intentarlo.", "error");
+
+                    }
+
+                }
+            })
+            
         }catch(error){
             throw error
         }
